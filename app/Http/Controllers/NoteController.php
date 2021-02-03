@@ -27,7 +27,7 @@ class NoteController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Notes/Create');
     }
 
     /**
@@ -38,7 +38,9 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Note::create($request->all() + ['user_id' => Auth::id()]);
+
+        return redirect()->route('notes.index')->with('status', 'Note created!!');
     }
 
     /**

@@ -22,7 +22,7 @@
                             <h3 class="text-lg text-gray-900">{{ note.title }}</h3>
                             <p class="">{{ note.content }}</p>
                             <hr class="my-6" />
-                            <inertia-link :href="route('notes.index', note.id)">
+                            <inertia-link :href="route('notes.index')">
                                 Back
                             </inertia-link>
                         </div>
