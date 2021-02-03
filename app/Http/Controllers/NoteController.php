@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Http\Requests\NoteRequest;
 use Illuminate\Support\Facades\Auth;
 
 class NoteController extends Controller
@@ -13,10 +14,13 @@ class NoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('Notes/Index', [
-            'notes' => Auth::user()->notes
+            'notes' => Note::latest()
+            ->where('title', 'LIKE', "%$request->q%")
+            ->where('user_id', Auth::id())
+            ->get()
         ]);
     }
 
@@ -36,7 +40,7 @@ class NoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NoteRequest $request)
     {
         Note::create($request->all() + ['user_id' => Auth::id()]);
 
@@ -72,7 +76,7 @@ class NoteController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Note $note)
+    public function update(NoteRequest $request, Note $note)
     {
         $note->update($request->all());
 
