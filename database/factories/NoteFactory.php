@@ -23,7 +23,7 @@ class NoteFactory extends Factory
     {
         return [
             'user_id' => rand(1,10),
-            'excerpt' => $this->faker->text(140),
+            'title' => $this->faker->text(100),
             'content' => $this->faker->text(1200)
         ];
     }
