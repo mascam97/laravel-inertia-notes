@@ -89,6 +89,6 @@ class NoteController extends Controller
     {
         $note->delete();
 
-        return redirect()->route('notes.index')->with('status', 'Note updated');
+        return redirect()->route('notes.index')->with('status', 'Note deleted');
     }
 }
