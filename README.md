@@ -6,6 +6,16 @@ _System to manage your notes._
 
 Personal project to learn [Tailwindcss](https://tailwindcss.com/) and [Laravel 8](https://laravel.com/docs/8.x) and its new features like [Laravel Sail](https://laravel.com/docs/8.x/sail) and [Jetstream with Inertia + Vue](https://jetstream.laravel.com/2.x/introduction.html). 
 
+### Achievements :star2:
+
+As web developer, I knew already about Laravel 7, Vue 2 and Docker, with this project I achieved.
+
+- Learn better practices with Docker compose.
+- Learn Inertia to create a Single Page Application.
+- Install all the package from Jetstream and Sail.
+- Create a basic CRUD, each user manage its data.
+- Implement testing to the CRUD with PHPUnit.
+
 ## Getting Started :rocket:
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -82,6 +92,14 @@ To test the backend run:
 sail php artisan test
 ```
 
+## Running the tests
+
+To test the backend run:
+
+```
+sail artisan test
+```
+
 ## Deployment 📦
 
 For production environment you need extra configurations for optimization and security as:
@@ -118,4 +136,5 @@ This project is licensed under the [MIT License](https://choosealicense.com/lice
 
 ## References :books:
 
+- [Testing with PHP and Laravel Basic Course](https://platzi.com/clases/laravel-testing/)
 - [Single Page Applications in Laravel with Inertia and Vue.js Course](https://platzi.com/clases/laravel-spa/)
