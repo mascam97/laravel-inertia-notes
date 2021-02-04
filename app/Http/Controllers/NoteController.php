@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Note;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -18,9 +19,9 @@ class NoteController extends Controller
     {
         return Inertia::render('Notes/Index', [
             'notes' => Note::latest()
-            ->where('title', 'LIKE', "%$request->q%")
-            ->where('user_id', Auth::id())
-            ->get()
+                ->where('title', 'LIKE', "%$request->q%")
+                ->where('user_id', Auth::id())
+                ->get()
         ]);
     }
 

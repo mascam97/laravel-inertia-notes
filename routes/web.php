@@ -29,5 +29,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('notes', App\Http\Controllers\NoteController::class)
-    ->middleware('auth:sanctum');
+    ->middleware(['auth:sanctum', 'note.logged.user']);
     

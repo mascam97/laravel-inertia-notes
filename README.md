@@ -14,7 +14,8 @@ As web developer, I knew already about Laravel 7, Vue 2 and Docker, with this pr
 - Learn Inertia to create a Single Page Application.
 - Install all the package from Jetstream and Sail.
 - Create a basic CRUD, each user manages its data.
-- Implement testing to the CRUD with PHPUnit.
+- Create a Middleware to allow request about notes just from its owner.
+- Implement testing to the CRUD and Middleware with PHPUnit.
 
 ## Getting Started :rocket:
 

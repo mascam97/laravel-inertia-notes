@@ -10,7 +10,7 @@ use Tests\TestCase;
 class NoteControllerTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     private $url = "/notes";
 
     public function test_guest_not_allowed()
@@ -32,11 +32,11 @@ class NoteControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post($this->url,[
+        $response = $this->actingAs($user)->post($this->url, [
             'title' => 'title',
             'content' => 'content'
         ]);
-        
+
         $response->assertStatus(302);
         $this->assertDatabaseHas('notes', ['title' => 'title']);
     }
@@ -50,7 +50,7 @@ class NoteControllerTest extends TestCase
             'content' => 'old content'
         ]);
 
-        $response = $this->actingAs($user)->put("$this->url/{$note->id}",[
+        $response = $this->actingAs($user)->put("$this->url/{$note->id}", [
             'title' => 'new title',
             'content' => 'new content'
         ]);
@@ -59,7 +59,7 @@ class NoteControllerTest extends TestCase
         $this->assertDatabaseHas('notes', [
             'title' => 'new title',
             'content' => 'new content'
-            ]);
+        ]);
     }
 
     public function test_destroy()
@@ -79,7 +79,7 @@ class NoteControllerTest extends TestCase
     public function test_request_data_validated()
     {
         $user = User::factory()->create();
- 
+
         $response = $this->actingAs($user)->post("$this->url", [
             'title' => '',
             'content' => ''
