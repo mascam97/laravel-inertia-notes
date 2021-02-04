@@ -18,10 +18,13 @@ class NoteController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('Notes/Index', [
+            // TODO: get just the necessary information
             'notes' => Note::latest()
                 ->where('title', 'LIKE', "%$request->q%")
                 ->where('user_id', Auth::id())
                 ->get()
+                ->append(['excerpt'])
+                ->toArray()
         ]);
     }
 

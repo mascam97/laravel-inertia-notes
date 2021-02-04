@@ -27,7 +27,8 @@
                             <table>
                                 <tr v-for="note in notes" :key="note.id">
                                     <td class="border px-4 py-2">
-                                        {{ note.title }}
+                                       <h3 class="text-lg text-gray-900">{{ note.title }}</h3>
+                                       <p>{{ note.excerpt }}</p>
                                     </td>
                                     <td class="px-4 py-2">
                                         <inertia-link :href="route('notes.show', note.id)">

@@ -14,6 +14,7 @@
                             <h3 class="text-lg text-gray-900">Note detail</h3>
                             <p class="text-lg text-gray-600">
                                 All the information about the note
+                                <!-- TODO: show more information about the note -->
                             </p>
                         </div>
                     </div>
