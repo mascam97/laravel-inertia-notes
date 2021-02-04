@@ -21,6 +21,11 @@
                                     Dashboard
                                 </jet-nav-link>
                             </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <jet-nav-link :href="route('notes.index')" :active="route().current('notes.*')">
+                                    Notes
+                                </jet-nav-link>
+                            </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -143,6 +148,9 @@
                         <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </jet-responsive-nav-link>
+                        <jet-responsive-nav-link :href="route('notes.index')" :active="route().current('notes.*')">
+                            Notes
+                        </jet-responsive-nav-link>
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -223,6 +231,16 @@
 
             <!-- Page Content -->
             <main>
+                <div v-if="$page.props.flash.status" class="bg-blue-500 text-white text-sm font-bold p-4">
+                    <p>{{ $page.props.flash.status }}</p>
+                </div>
+                <div v-if="Object.keys($page.props.errors).length != 0" class="bg-red-500 text-white text-sm font-bold p-4">
+                    <ul>
+                        <li v-for="error in $page.props.errors" :key="error">
+                            {{ error }}
+                        </li>
+                    </ul>
+                </div>
                 <slot></slot>
             </main>
 
