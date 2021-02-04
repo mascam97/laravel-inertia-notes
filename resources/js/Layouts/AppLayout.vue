@@ -234,6 +234,13 @@
                 <div v-if="$page.props.flash.status" class="bg-blue-500 text-white text-sm font-bold p-4">
                     <p>{{ $page.props.flash.status }}</p>
                 </div>
+                <div v-if="Object.keys($page.props.errors).length != 0" class="bg-red-500 text-white text-sm font-bold p-4">
+                    <ul>
+                        <li v-for="error in $page.props.errors" :key="error">
+                            {{ error }}
+                        </li>
+                    </ul>
+                </div>
                 <slot></slot>
             </main>
 

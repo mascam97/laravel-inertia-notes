@@ -1,6 +1,6 @@
 # Laravel8 Inertia Notes
 
-_System to manage your notes._
+_System with authentication to manage your notes._
 
 ### Project goal by martin-stepwolf :goal_net:
 
@@ -13,7 +13,7 @@ As web developer, I knew already about Laravel 7, Vue 2 and Docker, with this pr
 - Learn better practices with Docker compose.
 - Learn Inertia to create a Single Page Application.
 - Install all the package from Jetstream and Sail.
-- Create a basic CRUD, each user manage its data.
+- Create a basic CRUD, each user manages its data.
 - Implement testing to the CRUD with PHPUnit.
 
 ## Getting Started :rocket:
@@ -83,14 +83,6 @@ sail npm run watch
 ```
 
 And now you have all the environment in the port 80 (e.g http://127.0.0.1:80/).
-
-## Running the tests
-
-To test the backend run:
-
-```
-sail php artisan test
-```
 
 ## Running the tests
 
