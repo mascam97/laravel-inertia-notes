@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class NoteBelongsToLoggedUser
 {
@@ -18,8 +17,9 @@ class NoteBelongsToLoggedUser
      */
     public function handle(Request $request, Closure $next)
     {
+        // Note: A Policy is a better practice, but this Middleware works great also.
         if (isset($request->note))
-            if (Auth::id() != $request->note->user_id)
+            if ($request->user()->id != $request->note->user_id)
                 return redirect()->route('notes.index')
                     ->with('warning', 'Action not allowed, you can manage only your notes.');
         return $next($request);

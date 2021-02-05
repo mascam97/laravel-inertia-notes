@@ -2,11 +2,24 @@
 
 namespace Tests\Unit\Models;
 
+use App\Models\User;
 use App\Models\Note;
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class NoteTest extends TestCase
 {
+    use RefreshDatabase;
+
+    public function test_belongs_to_note()
+    {
+        $note = Note::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
+
+        $this->assertInstanceOf(User::class, $note->user);
+    }
+
     public function test_get_excerpt()
     {
         $note = new Note();

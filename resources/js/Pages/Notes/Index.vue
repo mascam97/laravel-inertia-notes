@@ -41,6 +41,11 @@
                                         </inertia-link>
                                     </td>
                                 </tr>
+                                <tr v-if="notes.length === 0">
+                                    <td class="border px-4 py-2">
+                                       <h3 class="text-lg text-gray-900">There are not notes.</h3>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                     </div>

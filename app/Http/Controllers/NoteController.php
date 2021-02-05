@@ -21,7 +21,7 @@ class NoteController extends Controller
             // TODO: get just the necessary information
             'notes' => Note::latest()
                 ->where('title', 'LIKE', "%$request->q%")
-                ->where('user_id', Auth::id())
+                ->where('user_id', $request->user()->id)
                 ->get()
                 ->append(['excerpt'])
                 ->toArray()
@@ -46,7 +46,7 @@ class NoteController extends Controller
      */
     public function store(NoteRequest $request)
     {
-        Note::create($request->all() + ['user_id' => Auth::id()]);
+        $request->user()->notes()->create($request->all());
 
         return redirect()->route('notes.index')->with('status', 'Note created!!');
     }

@@ -15,7 +15,7 @@ As web developer, I knew already about Laravel 7, Vue 2 and Docker, with this pr
 - Install all the package from Jetstream and Sail.
 - Create a basic CRUD, each user manages its data.
 - Create a Middleware to allow request about notes just from its owner.
-- Implement testing to the CRUD and Middleware with PHPUnit.
+- Implement testing to Models, Controller (the CRUD) and Middleware with PHPUnit.
 
 ## Getting Started :rocket:
 
@@ -129,5 +129,6 @@ This project is licensed under the [MIT License](https://choosealicense.com/lice
 
 ## References :books:
 
+- [Test Driven Development with Laravel Course](https://platzi.com/clases/laravel-tdd/)
 - [Testing with PHP and Laravel Basic Course](https://platzi.com/clases/laravel-testing/)
 - [Single Page Applications in Laravel with Inertia and Vue.js Course](https://platzi.com/clases/laravel-spa/)
