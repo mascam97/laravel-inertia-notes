@@ -38,7 +38,15 @@ cp .env.example .env
 
 Note: You could change some values, anyway docker-compose create the database according to the defined values.
 
-First create the next alias to run commands in the container.
+Then install the PHP dependencies:
+
+```
+ docker run --rm --interactive --tty \
+ --volume $PWD:/app \
+ composer install
+```
+
+Then create the next alias to run commands in the container with Laravel Sail.
 
 ```
 alias sail='bash vendor/bin/sail'
@@ -55,11 +63,14 @@ With Laravel Sail you can run commands as docker-compose (docker-compose up -d =
 Then install the dependencies.
 
 ```
-sail composer install
 sail npm install
 ```
 
 Then generate the application key.
+
+```
+sail artisan key:generate
+```
 
 Finally generate the database with fake data:
 
