@@ -66,6 +66,12 @@ Then install the dependencies.
 sail npm install
 ```
 
+Create a symbolic link to storage images.
+
+```
+php artisan storage:link
+```
+
 Then generate the application key.
 
 ```
