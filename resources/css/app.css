@@ -1,3 +1,10 @@
+/* This directive starts the html elements (remove many default properties) */
 @import 'tailwindcss/base';
+/* This directive includes many classes for components and any component register by a plugin */
 @import 'tailwindcss/components';
+/* This directive includes many classes with properties like colors*/
 @import 'tailwindcss/utilities';
+
+/* This optional directive manages where responsible variation of each utility is included */
+/* @tailwind screens */
+/* If this is omitted, Tailwind will included at the final*/
