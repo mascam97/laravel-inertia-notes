@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,11 +19,13 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $name
  * @property string $email
  * @property string $password
+ * @property ?int $subscription_id
  * @property ?Carbon $email_verified_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
  * @property-read Collection $notes
+ * @property-read Subscription $subscription
  *
  * @method static UserFactory factory(...$parameters)
  */
@@ -74,6 +77,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function subscription(): BelongsTo
+    {
+        return $this->belongsTo(Subscription::class);
+    }
 
     public function notes(): HasMany
     {

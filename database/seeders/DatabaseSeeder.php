@@ -2,21 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\Subscription;
 use App\Models\User;
 use App\Models\Note;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         $admin = new User();
         $admin->name = config('admin.name');
@@ -25,16 +20,30 @@ class DatabaseSeeder extends Seeder
         $admin->save();
 
         if (! App::environment('production')) {
-            User::factory(9)->create();
+            $premiumSubscription = Subscription::factory()->create([
+                'name' => 'Premium subscription',
+                'rules' => ['notes_maximum_amount' => null]
+            ]);
 
-            /** @var Collection $usersId */
-            $usersId = User::query()
-                ->whereNot('id', $admin->getKey())
+            $admin->subscription()->associate($premiumSubscription)->save();
+
+            $freeSubscription = Subscription::factory()->create([
+                'name' => 'Free subscription',
+                'rules' => ['notes_maximum_amount' => 100]
+            ]);
+
+            User::factory(100)->create([
+                'subscription_id' => $freeSubscription->getKey()
+            ]);
+
+            User::query()
                 ->select('id')
                 ->get()
-                ->pluck('id');
-
-            Note::factory(200)->create(['user_id' => $usersId->random()]);
+                ->each(function (User $user){
+                    Note::factory(50)->create([
+                        'user_id' => $user->getKey()
+                    ]);
+                });
         }
     }
 }
