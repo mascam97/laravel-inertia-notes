@@ -1,12 +1,12 @@
-# Laravel Inertia Notes ![Status](https://img.shields.io/badge/status-no_longer_maintained-orange) ![Passing](https://img.shields.io/badge/build-passing-green) ![Docker build](https://img.shields.io/badge/docker_build-passing-green)  ![Tests](https://img.shields.io/badge/tests-100%25-green)
+# Laravel Inertia Notes ![Status](https://img.shields.io/badge/status-no_longer_maintained-orange) ![Tests](https://img.shields.io/badge/tests-100%25-green)
 
-_System with authentication to manage your notes._
+_System with authentication to manage notes._
 
 ### Project goal by mascam97 :goal_net:
 
 Personal project to learn [Tailwindcss](https://tailwindcss.com/) and [Laravel 8](https://laravel.com/docs/8.x) and its new feature and [Jetstream with Inertia + Vue](https://jetstream.laravel.com/2.x/introduction.html). 
 
-Due to I have another proyect with Jetstream [Laravel Livewire Publications](https://github.com/mascam97/laravel-livewire-publications), this project is no longer maintained.
+Due to I have another project with Jetstream [Laravel Livewire Publications](https://github.com/mascam97/laravel-livewire-publications), this project is no longer maintained.
 
 ### Achievements :star2:
 
