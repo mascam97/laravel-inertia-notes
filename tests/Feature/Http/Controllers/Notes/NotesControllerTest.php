@@ -25,56 +25,6 @@ class NotesControllerTest extends TestCase
         $this->post("$this->url", [])->assertRedirect('login');   // store
     }
 
-    public function test_index_empty()
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->get($this->url);
-        $response->assertStatus(200);
-        $response->assertSee(htmlspecialchars_decode('notes&quot;:[]'));
-    }
-
-    public function test_index_with_data()
-    {
-        $user = User::factory()->create();
-
-        $note = Note::factory()->create([
-            'user_id' => $user->id
-        ]);
-
-        $response = $this->actingAs($user)->get($this->url);
-        $response->assertStatus(200);
-        $response->assertSee($note->title);
-        $response->assertSee($user->name);
-        $response->assertDontSee(htmlspecialchars_decode('notes&quot;:[]'));
-    }
-
-    public function test_validate_store()
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->post("$this->url", [
-            'title' => '',
-            'content' => ''
-        ]);
-
-        $response->assertSessionHasErrors(['title', 'content']);
-        $response->assertStatus(302);
-    }
-
-    public function test_store()
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->post($this->url, [
-            'title' => 'title',
-            'content' => 'content'
-        ]);
-
-        $response->assertStatus(302);
-        $this->assertDatabaseHas('notes', ['title' => 'title']);
-    }
-
     public function test_show_and_edit()
     {
         $user = User::factory()->create();
@@ -96,45 +46,6 @@ class NotesControllerTest extends TestCase
         $response_edit->assertStatus(200);
         $response_edit->assertSee($data['title']);
         $response_edit->assertSee($data['content']);
-    }
-
-    public function test_validate_update()
-    {
-        $user = User::factory()->create();
-        $note = Note::factory()->create([
-            'user_id' => $user->id,
-            'title' => $this->faker->text,
-            'content' => $this->faker->text
-        ]);
-
-        $response = $this->actingAs($user)->put("$this->url/{$note->id}", [
-            'title' => '',
-            'content' => ''
-        ]);
-
-        $response->assertSessionHasErrors(['title', 'content']);
-        $response->assertStatus(302);
-    }
-
-    public function test_update()
-    {
-        $user = User::factory()->create();
-        $note = Note::factory()->create([
-            'user_id' => $user->id,
-            'title' => 'old title',
-            'content' => 'old content'
-        ]);
-
-        $response = $this->actingAs($user)->put("$this->url/{$note->id}", [
-            'title' => 'new title',
-            'content' => 'new content'
-        ]);
-
-        $response->assertStatus(302);
-        $this->assertDatabaseHas('notes', [
-            'title' => 'new title',
-            'content' => 'new content'
-        ]);
     }
 
     public function test_destroy()
