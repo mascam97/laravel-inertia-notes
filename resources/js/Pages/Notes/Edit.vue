@@ -13,7 +13,7 @@
                         <div class="px-4 sm:px0">
                             <h3 class="text-lg text-gray-900">Edit note</h3>
                             <p class="text-lg text-gray-600">
-                                Update any data
+                                Update data
                             </p>
                         </div>
                     </div>
@@ -23,32 +23,29 @@
                                 <label class="block font-medium text-sm text-gray-700">
                                     Title
                                 </label>
-                                <textarea 
+                                <textarea
                                     class="form-input w-full rounded-md shadow-sm"
                                     v-model="form.title"
                                 ></textarea>
                                 <label class="block font-medium text-sm text-gray-700">
                                     Content
                                 </label>
-                                <textarea 
+                                <textarea
                                     class="form-input w-full rounded-md shadow-sm"
                                     v-model="form.content"
                                     rows="8"
                                 ></textarea>
-                                <button 
-                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-                                >Editar</button>
+                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
+                                    Update
+                                </button>
+                                <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md" @click.prevent="destroy">
+                                    Delete
+                                </a>
                             </form>
 
-                            <hr class="my-6">
+                            <hr class="my-3">
 
-                            <a href="#" @click.prevent="destroy">
-                                Delete note
-                            </a>
-
-                            <hr class="my-6">
-
-                            <inertia-link :href="route('notes.index', note.id)">
+                            <inertia-link class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md" :href="route('notes.index')">
                                 Back
                             </inertia-link>
                         </div>

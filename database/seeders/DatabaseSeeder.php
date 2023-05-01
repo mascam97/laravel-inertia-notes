@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Note;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,13 +18,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
-            'name' => 'Administrator',
-            'email' => 'admin@laravel.com',
-            'password' => bcrypt('12345678')
-        ]);
+        $admin = new User();
+        $admin->name = config('admin.name');
+        $admin->email = config('admin.email');
+        $admin->password = Hash::make(config('admin.password'));
+        $admin->save();
 
-        User::factory(9)->create();
-        Note::factory(200)->create();
+        if (! App::environment('production')) {
+            User::factory(9)->create();
+
+            /** @var Collection $usersId */
+            $usersId = User::query()
+                ->whereNot('id', $admin->getKey())
+                ->select('id')
+                ->get()
+                ->pluck('id');
+
+            Note::factory(200)->create(['user_id' => $usersId->random()]);
+        }
     }
 }

@@ -11,7 +11,7 @@
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px0">
-                            <h3 class="text-lg text-gray-900">Your notes</h3>
+                            <h3 class="text-lg text-gray-900">Notes</h3>
                             <p class="text-lg text-gray-600">Your notes</p>
                         </div>
                     </div>
@@ -19,24 +19,24 @@
                         <div class="shadow bg-white md:rounded-md p-4">
                             <div class="flex justify-between">
                                 <input type="text" class="form-input rounded-md shadow-sm" placeholder="Search..." v-model="q">
-                                <inertia-link :href="route('notes.create')" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md">
+                                <inertia-link :href="route('notes.create')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">
                                     Create
                                 </inertia-link>
                             </div>
                             <hr class="my-3" />
                             <table>
                                 <tr v-for="note in notes" :key="note.id">
-                                    <td class="border px-4 py-2">
-                                       <h3 class="text-lg text-gray-900">{{ note.title }}</h3>
+                                    <td class="border px-4 py-2 mr-2">
+                                       <h3 class="text-lg text-gray-900 font-bold">{{ note.title }}</h3>
                                        <p>{{ note.excerpt }}</p>
                                     </td>
-                                    <td class="px-4 py-2">
-                                        <inertia-link :href="route('notes.show', note.id)">
-                                            Look
+                                    <td>
+                                        <inertia-link class="bg-gray-500 hover:bg-gray-700 text-white font-bold font-bold m-1 py-2 px-4 rounded-md" :href="route('notes.show', note.id)">
+                                            Show
                                         </inertia-link>
                                     </td>
-                                    <td class="px-4 py-2">
-                                        <inertia-link :href="route('notes.edit', note.id)">
+                                    <td>
+                                        <inertia-link class="bg-blue-500 hover:bg-blue-700 text-white font-bold font-bold m-1 py-2 px-4 rounded-md" :href="route('notes.edit', note.id)">
                                             Edit
                                         </inertia-link>
                                     </td>
@@ -47,6 +47,7 @@
                                     </td>
                                 </tr>
                             </table>
+                            <!-- TODO: Add pagination-->
                         </div>
                     </div>
                 </div>

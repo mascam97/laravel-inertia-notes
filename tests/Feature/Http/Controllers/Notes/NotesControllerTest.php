@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers;
+namespace Tests\Feature\Http\Controllers\Notes;
 
 use App\Models\User;
 use App\Models\Note;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class NoteControllerTest extends TestCase
+class NotesControllerTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -33,7 +33,7 @@ class NoteControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee(htmlspecialchars_decode('notes&quot;:[]'));
     }
-    
+
     public function test_index_with_data()
     {
         $user = User::factory()->create();
@@ -41,7 +41,7 @@ class NoteControllerTest extends TestCase
         $note = Note::factory()->create([
             'user_id' => $user->id
         ]);
-        
+
         $response = $this->actingAs($user)->get($this->url);
         $response->assertStatus(200);
         $response->assertSee($note->title);
@@ -86,13 +86,13 @@ class NoteControllerTest extends TestCase
         $note = Note::factory()->create($data);
 
         $response_show = $this->actingAs($user)->get("$this->url/{$note->id}");
- 
+
         $response_show->assertStatus(200);
         $response_show->assertSee($data['title']);
         $response_show->assertSee($data['content']);
 
         $response_edit = $this->actingAs($user)->get("$this->url/{$note->id}/edit");
- 
+
         $response_edit->assertStatus(200);
         $response_edit->assertSee($data['title']);
         $response_edit->assertSee($data['content']);
@@ -111,7 +111,7 @@ class NoteControllerTest extends TestCase
             'title' => '',
             'content' => ''
         ]);
- 
+
         $response->assertSessionHasErrors(['title', 'content']);
         $response->assertStatus(302);
     }

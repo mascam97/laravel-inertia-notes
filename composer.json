@@ -1,5 +1,5 @@
 {
-    "name": "laravel/laravel",
+    "name": "mascam97/laravel-inertia-notes",
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": [
@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -20,6 +20,7 @@
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.3",

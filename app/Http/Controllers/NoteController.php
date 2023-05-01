@@ -3,19 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Requests\NoteRequest;
-use Illuminate\Support\Facades\Auth;
+use Inertia\Response;
 
 class NoteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         return Inertia::render('Notes/Index', [
             // TODO: get just the necessary information
@@ -28,72 +24,36 @@ class NoteController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Notes/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(NoteRequest $request)
+    public function store(NoteRequest $request): RedirectResponse
     {
         $request->user()->notes()->create($request->all());
 
         return redirect()->route('notes.index')->with('status', 'Note created!!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Note $note)
+    public function show(Note $note): Response
     {
         return Inertia::render('Notes/Show', compact('note'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Note $note)
+    public function edit(Note $note): Response
     {
         return Inertia::render('Notes/Edit', compact('note'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function update(NoteRequest $request, Note $note)
+    public function update(NoteRequest $request, Note $note): RedirectResponse
     {
         $note->update($request->all());
 
         return redirect()->route('notes.index')->with('status', 'Note updated!!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Note $note)
+    public function destroy(Note $note): RedirectResponse
     {
         $note->delete();
 

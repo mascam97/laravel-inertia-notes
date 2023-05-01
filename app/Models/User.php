@@ -2,14 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property-read int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property ?Carbon $email_verified_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ *
+ * @property-read Collection $notes
+ *
+ * @method static UserFactory factory(...$parameters)
+ */
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -59,7 +75,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function notes() 
+    public function notes(): HasMany
     {
         return $this->hasMany(Note::class);
     }

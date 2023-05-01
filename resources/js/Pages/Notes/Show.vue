@@ -13,7 +13,7 @@
                         <div class="px-4 sm:px0">
                             <h3 class="text-lg text-gray-900">Note detail</h3>
                             <p class="text-lg text-gray-600">
-                                All the information about the note
+                                Information about the note
                                 <!-- TODO: show more information about the note -->
                             </p>
                         </div>
@@ -23,7 +23,7 @@
                             <h3 class="text-lg text-gray-900">{{ note.title }}</h3>
                             <p class="">{{ note.content }}</p>
                             <hr class="my-6" />
-                            <inertia-link :href="route('notes.index')">
+                            <inertia-link class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md" :href="route('notes.index')">
                                 Back
                             </inertia-link>
                         </div>

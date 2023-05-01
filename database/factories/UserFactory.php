@@ -6,6 +6,10 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+/**
+ * @extends Factory<User>
+ * @method User create($attributes = [])
+ */
 class UserFactory extends Factory
 {
     /**

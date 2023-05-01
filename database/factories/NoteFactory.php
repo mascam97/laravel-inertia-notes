@@ -5,6 +5,10 @@ namespace Database\Factories;
 use App\Models\Note;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Note>
+ * @method Note create($attributes = [])
+ */
 class NoteFactory extends Factory
 {
     /**
