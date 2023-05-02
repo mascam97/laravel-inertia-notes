@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Notes\StoreNoteAction;
+use App\Actions\Notes\UpdateNoteAction;
 use App\Dtos\Notes\StoreNoteData;
+use App\Dtos\Notes\UpdateNoteData;
 use App\Exceptions\NoteExceptions;
 use App\Models\Note;
 use App\Models\User;
@@ -67,7 +69,9 @@ class NoteController extends Controller
 
     public function update(NoteRequest $request, Note $note): RedirectResponse
     {
-        $note->update($request->all());
+        $data = UpdateNoteData::fromRequest($request);
+
+        (new UpdateNoteAction())->handle($note, $data);
 
         return redirect()->route('notes.index')->with('status', 'Note updated!!');
     }

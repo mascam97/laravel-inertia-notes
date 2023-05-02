@@ -8,7 +8,7 @@ Personal project to learn [Tailwindcss](https://tailwindcss.com/) and [Laravel 8
 
 Due to I have another project with Jetstream [Laravel Livewire Publications](https://github.com/mascam97/laravel-livewire-publications), this project is no longer maintained.
 
-### Achievements :star2:
+### Achievements 2021 :star2:
 
 - Install all the package from Jetstream and Sail.
 - Learn better practices with Docker compose.
@@ -16,6 +16,11 @@ Due to I have another project with Jetstream [Laravel Livewire Publications](htt
 - Create a basic CRUD, each user manages its data.
 - Create a Middleware to allow request about notes just from its owner.
 - Tested with PHPUnit (**Test-Driven Development**) to Models, CRUD implemented and Middleware.
+
+### Achievements 2023 :star2:
+
+- Refactored some code with best practices
+- Implemented some design patters: QueryBuilder, Data Transfer Object and Actions 
 
 ---
 
