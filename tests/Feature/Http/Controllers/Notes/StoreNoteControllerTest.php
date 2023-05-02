@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers\Notes;
 
+use App\Models\Note;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -15,11 +17,16 @@ class StoreNoteControllerTest extends TestCase
 
     private User $user;
 
+    private Subscription $subscription;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->user = User::factory()->create();
+
+        $this->subscription = Subscription::factory()->create(['rules' => ['notes_maximum_amount' => 1000]]);
+        $this->user->subscription()->associate($this->subscription)->save();
 
         $this->actingAs($this->user);
     }
@@ -41,6 +48,39 @@ class StoreNoteControllerTest extends TestCase
         ])->assertStatus(302);
 
         $this->assertDatabaseHas('notes', [
+            'title' => 'title',
+            'content' => 'content',
+            'user_id' => $this->user->getKey(),
+        ]);
+    }
+
+    public function test_cannot_store_if_user_does_not_have_subscription()
+    {
+        $this->user->subscription()->disassociate()->save();
+
+        $this->post($this->url, [
+            'title' => 'title',
+            'content' => 'content'
+        ])->assertStatus(302);
+
+        $this->assertDatabaseMissing('notes', [
+            'title' => 'title',
+            'content' => 'content',
+            'user_id' => $this->user->getKey(),
+        ]);
+    }
+
+    public function test_cannot_store_if_reaches_the_notes_limit_amount()
+    {
+        $this->subscription->update(['rules' => ['notes_maximum_amount' => 100]]);
+        Note::factory(100)->create(['user_id' => $this->user->getKey()]);
+
+        $this->post($this->url, [
+            'title' => 'title',
+            'content' => 'content'
+        ])->assertStatus(302);
+
+        $this->assertDatabaseMissing('notes', [
             'title' => 'title',
             'content' => 'content',
             'user_id' => $this->user->getKey(),

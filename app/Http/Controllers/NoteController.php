@@ -37,6 +37,27 @@ class NoteController extends Controller
 
     public function store(NoteRequest $request): RedirectResponse
     {
+        /** @var User $authUser */
+        $authUser = $request->user();
+
+        $notesAmount = $authUser->notes()->count();
+        $userSubscription = $authUser->subscription;
+
+        if ($userSubscription === null){
+            return redirect()
+                ->route('notes.index')
+                ->with('warning', __('validation.custom.subscription.required'));
+        }
+
+        if ($notesAmount >= $userSubscription->rules['notes_maximum_amount']){
+            return redirect()
+                ->route('notes.index')
+                ->with('warning', __(
+                    'validation.custom.notes.limit',
+                    ['amount' => $userSubscription->rules['notes_maximum_amount']]
+                ));
+        }
+
         $request->user()->notes()->create($request->all());
 
         return redirect()->route('notes.index')->with('status', 'Note created!!');

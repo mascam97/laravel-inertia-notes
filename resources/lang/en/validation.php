@@ -131,6 +131,12 @@ return [
     */
 
     'custom' => [
+        'notes' => [
+          'limit' => 'You cannot create more notes, you have reached the limit (:amount)'
+        ],
+        'subscription' => [
+            'required' => 'You do not have a subscription associated, please contact the support team'
+        ],
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
