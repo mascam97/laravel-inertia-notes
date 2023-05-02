@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Notes\StoreNoteAction;
+use App\Dtos\Notes\StoreNoteData;
+use App\Exceptions\NoteExceptions;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -39,26 +42,15 @@ class NoteController extends Controller
     {
         /** @var User $authUser */
         $authUser = $request->user();
+        $data = StoreNoteData::fromRequest($request);
 
-        $notesAmount = $authUser->notes()->count();
-        $userSubscription = $authUser->subscription;
-
-        if ($userSubscription === null){
+        try {
+            (new StoreNoteAction())->handle($data, $authUser);
+        } catch (NoteExceptions $e) {
             return redirect()
                 ->route('notes.index')
-                ->with('warning', __('validation.custom.subscription.required'));
+                ->with('warning', $e->getMessage());
         }
-
-        if ($notesAmount >= $userSubscription->rules['notes_maximum_amount']){
-            return redirect()
-                ->route('notes.index')
-                ->with('warning', __(
-                    'validation.custom.notes.limit',
-                    ['amount' => $userSubscription->rules['notes_maximum_amount']]
-                ));
-        }
-
-        $request->user()->notes()->create($request->all());
 
         return redirect()->route('notes.index')->with('status', 'Note created!!');
     }

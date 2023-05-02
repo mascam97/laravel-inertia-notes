@@ -54,26 +54,9 @@ class StoreNoteControllerTest extends TestCase
         ]);
     }
 
-    public function test_cannot_store_if_user_does_not_have_subscription()
+    public function test_cannot_store_if_an_exception_is_thrown()
     {
         $this->user->subscription()->disassociate()->save();
-
-        $this->post($this->url, [
-            'title' => 'title',
-            'content' => 'content'
-        ])->assertStatus(302);
-
-        $this->assertDatabaseMissing('notes', [
-            'title' => 'title',
-            'content' => 'content',
-            'user_id' => $this->user->getKey(),
-        ]);
-    }
-
-    public function test_cannot_store_if_reaches_the_notes_limit_amount()
-    {
-        $this->subscription->update(['rules' => ['notes_maximum_amount' => 100]]);
-        Note::factory(100)->create(['user_id' => $this->user->getKey()]);
 
         $this->post($this->url, [
             'title' => 'title',
