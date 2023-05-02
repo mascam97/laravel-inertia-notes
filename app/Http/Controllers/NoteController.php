@@ -17,6 +17,7 @@ class NoteController extends Controller
             // TODO: get just the necessary information
             'notes' => Note::latest()
                 ->where('title', 'LIKE', "%$request->q%")
+                ->orWhere('content', 'LIKE', "%$request->q%")
                 ->where('user_id', $request->user()->id)
                 ->get()
                 ->append(['excerpt'])

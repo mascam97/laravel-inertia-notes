@@ -62,4 +62,22 @@ class IndexNotesControllerTest extends TestCase
             ->assertSee($filteredNote->title)
             ->assertDontSee($notFilteredNote->title);
     }
+
+    public function test_filter_by_content()
+    {
+        $filteredNote = Note::factory()->create([
+            'content' => 'Tomorrow I should',
+            'user_id' => $this->user->id
+        ]);
+
+        $notFilteredNote = Note::factory()->create([
+            'content' => 'Yesterday I did',
+            'user_id' => $this->user->id
+        ]);
+
+        $this->get("$this->url?q=tomorrow")
+            ->assertStatus(200)
+            ->assertSee($filteredNote->title)
+            ->assertDontSee($notFilteredNote->title);
+    }
 }
