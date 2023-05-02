@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -13,15 +14,19 @@ class NoteController extends Controller
 {
     public function index(Request $request): Response
     {
+        /** @var User $authUser */
+        $authUser = $request->user();
+
+        $notes = Note::query()
+            ->select(['id', 'title', 'content'])
+            ->whereUser($authUser)
+            ->whereContains($request->input('q'))
+            ->latest()
+            ->get()
+            ->append(['excerpt']);
+
         return Inertia::render('Notes/Index', [
-            // TODO: get just the necessary information
-            'notes' => Note::latest()
-                ->where('title', 'LIKE', "%$request->q%")
-                ->orWhere('content', 'LIKE', "%$request->q%")
-                ->where('user_id', $request->user()->id)
-                ->get()
-                ->append(['excerpt'])
-                ->toArray()
+            'notes' => $notes->toArray()
         ]);
     }
 

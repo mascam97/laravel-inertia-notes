@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\QueryBuilders\NoteQueryBuilder;
 use Database\Factories\NoteFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
@@ -21,6 +23,7 @@ use Illuminate\Support\Str;
  * @property-read User $user
  *
  * @method static NoteFactory factory(...$parameters)
+ * @method static NoteQueryBuilder query()
  */
 class Note extends Model
 {
@@ -33,6 +36,15 @@ class Note extends Model
         'title',
         'content'
     ];
+
+    /**
+     * @param Builder $query
+     * @return NoteQueryBuilder<Note>
+     */
+    public function newEloquentBuilder($query): NoteQueryBuilder
+    {
+        return new NoteQueryBuilder($query);
+    }
 
     public function user(): BelongsTo
     {
