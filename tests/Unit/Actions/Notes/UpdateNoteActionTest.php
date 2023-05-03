@@ -22,8 +22,7 @@ class UpdateNoteActionTest extends TestCase
         parent::setUp();
 
         $this->user = User::factory()->create();
-        $this->note = Note::factory()->create([
-            'user_id' => $this->user->getKey(),
+        $this->note = Note::factory()->user($this->user)->create([
             'title' => 'Old title',
             'content' => 'Old content',
         ]);

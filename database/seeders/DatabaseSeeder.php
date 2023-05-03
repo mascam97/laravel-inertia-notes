@@ -40,9 +40,7 @@ class DatabaseSeeder extends Seeder
                 ->select('id')
                 ->get()
                 ->each(function (User $user){
-                    Note::factory(50)->create([
-                        'user_id' => $user->getKey()
-                    ]);
+                    Note::factory(50)->user($user)->create();
                 });
         }
     }

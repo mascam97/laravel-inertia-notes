@@ -15,8 +15,8 @@ class UserQueryBuilderTest extends TestCase
     {
         $userOne = User::factory()->create();
         $userTwo = User::factory()->create();
-        $filteredNote = Note::factory()->create(['user_id' => $userOne->getKey()]);
-        $notFilteredNote = Note::factory()->create(['user_id' => $userTwo->getKey()]);
+        $filteredNote = Note::factory()->user($userOne)->create();
+        $notFilteredNote = Note::factory()->user($userTwo)->create();
 
         $notes = Note::query()->whereUser($userOne)->get();
 
@@ -28,9 +28,9 @@ class UserQueryBuilderTest extends TestCase
     public function test_can_get_notes_by_contains()
     {
         $user = User::factory()->create();
-        $noteOne = Note::factory()->create(['user_id' => $user->getKey()]);
-        $noteTwo = Note::factory()->create(['title' => 'Yesterday thoughts', 'user_id' => $user->getKey()]);
-        $noteThree = Note::factory()->create(['content' => 'Yesterday was a hard day', 'user_id' => $user->getKey()]);
+        $noteOne = Note::factory()->user($user)->create();
+        $noteTwo = Note::factory()->user($user)->create(['title' => 'Yesterday thoughts']);
+        $noteThree = Note::factory()->user($user)->create(['content' => 'Yesterday was a hard day']);
 
         $queryOne = Note::query()->whereContains(null)->get();
         $this->assertCount(3, $queryOne);

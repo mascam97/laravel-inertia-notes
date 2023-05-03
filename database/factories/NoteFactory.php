@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Note;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -30,5 +31,12 @@ class NoteFactory extends Factory
             'title' => $this->faker->text(50),
             'content' => $this->faker->text(1200)
         ];
+    }
+
+    public function user(User $user): self
+    {
+        return $this->state([
+            'user_id' => $user->getKey(),
+        ]);
     }
 }

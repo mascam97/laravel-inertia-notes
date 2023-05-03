@@ -51,8 +51,7 @@ class NotesControllerTest extends TestCase
     public function test_destroy()
     {
         $user = User::factory()->create();
-        $note = Note::factory()->create([
-            'user_id' => $user->id,
+        $note = Note::factory()->user($user)->create([
             'title' => 'post to delete'
         ]);
 

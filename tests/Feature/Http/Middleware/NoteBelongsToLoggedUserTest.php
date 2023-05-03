@@ -18,15 +18,14 @@ class NoteBelongsToLoggedUserTest extends TestCase
     {
         $user_owner = User::factory()->create();
 
-        $note = Note::factory()->create([
-            'user_id' => $user_owner->id,
+        $note = Note::factory()->user($user_owner)->create([
             'title' => 'old title',
             'content' => 'old content'
         ]);
 
-        $user_malicious = User::factory()->create();
+        $userMalicious = User::factory()->create();
 
-        $response = $this->actingAs($user_malicious)->put("$this->url/$note->id", [
+        $response = $this->actingAs($userMalicious)->put("$this->url/$note->id", [
             'title' => 'new title not allowed',
             'content' => 'new content not allowed'
         ]);
@@ -45,22 +44,21 @@ class NoteBelongsToLoggedUserTest extends TestCase
     public function test_edit_and_show_by_owner_and_no_owner()
     {
         $user_owner = User::factory()->create();
-        $note = Note::factory()->create([
-            'user_id' => $user_owner->id,
+        $note = Note::factory()->user($user_owner)->create([
             'title' => 'old title',
             'content' => 'old content'
         ]);
 
         $this->actingAs($user_owner)->get("$this->url/$note->id")->assertStatus(200);
         $this->actingAs($user_owner)->get("$this->url/$note->id/edit")->assertStatus(200);
-        
-        $user_malicious = User::factory()->create();
 
-        $response_show = $this->actingAs($user_malicious)->get("$this->url/$note->id");
+        $userMalicious = User::factory()->create();
+
+        $response_show = $this->actingAs($userMalicious)->get("$this->url/$note->id");
         $response_show->assertStatus(302);
         $response_show->assertRedirect('notes');
-        
-        $response_edit = $this->actingAs($user_malicious)->get("$this->url/$note->id/edit");
+
+        $response_edit = $this->actingAs($userMalicious)->get("$this->url/$note->id/edit");
         $response_edit->assertStatus(302);
         $response_edit->assertRedirect('notes');
 
@@ -74,15 +72,14 @@ class NoteBelongsToLoggedUserTest extends TestCase
     {
         $user_owner = User::factory()->create();
 
-        $note = Note::factory()->create([
-            'user_id' => $user_owner->id,
+        $note = Note::factory()->user($user_owner)->create([
             'title' => 'old title',
             'content' => 'old content'
         ]);
 
-        $user_malicious = User::factory()->create();
+        $userMalicious = User::factory()->create();
 
-        $response = $this->actingAs($user_malicious)->delete("$this->url/$note->id");
+        $response = $this->actingAs($userMalicious)->delete("$this->url/$note->id");
         $response->assertStatus(302);
         $response->assertRedirect('notes');
 

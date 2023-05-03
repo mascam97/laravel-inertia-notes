@@ -24,10 +24,9 @@ class UpdateNoteControllerTest extends TestCase
 
         $this->user = User::factory()->create();
 
-        $this->note = Note::factory()->create([
+        $this->note = Note::factory()->user($this->user)->create([
             'title' => 'Note title',
             'content' => 'Note content',
-            'user_id' => $this->user->getKey()
         ]);
 
         $this->actingAs($this->user);

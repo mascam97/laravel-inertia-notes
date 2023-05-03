@@ -34,9 +34,7 @@ class IndexNotesControllerTest extends TestCase
 
     public function test_index_notes()
     {
-        $note = Note::factory()->create([
-            'user_id' => $this->user->id
-        ]);
+        $note = Note::factory()->user($this->user)->create();
 
         $this->get($this->url)
             ->assertStatus(200)
@@ -47,14 +45,12 @@ class IndexNotesControllerTest extends TestCase
 
     public function test_filter_by_title()
     {
-        $filteredNote = Note::factory()->create([
+        $filteredNote = Note::factory()->user($this->user)->create([
             'title' => 'Task for weekend',
-            'user_id' => $this->user->id
         ]);
 
-        $notFilteredNote = Note::factory()->create([
+        $notFilteredNote = Note::factory()->user($this->user)->create([
             'title' => 'Task for monday',
-            'user_id' => $this->user->id
         ]);
 
         $this->get("$this->url?q=weekend")
@@ -65,14 +61,12 @@ class IndexNotesControllerTest extends TestCase
 
     public function test_filter_by_content()
     {
-        $filteredNote = Note::factory()->create([
+        $filteredNote = Note::factory()->user($this->user)->create([
             'content' => 'Tomorrow I should',
-            'user_id' => $this->user->id
         ]);
 
-        $notFilteredNote = Note::factory()->create([
+        $notFilteredNote = Note::factory()->user($this->user)->create([
             'content' => 'Yesterday I did',
-            'user_id' => $this->user->id
         ]);
 
         $this->get("$this->url?q=tomorrow")

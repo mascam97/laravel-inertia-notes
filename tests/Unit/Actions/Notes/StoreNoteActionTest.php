@@ -42,36 +42,25 @@ class StoreNoteActionTest extends TestCase
 
     public function test_cannot_store_if_user_does_not_have_subscription()
     {
-//        $this->expectException(NoteExceptions::class);
+        $this->expectException(NoteExceptions::class);
+        $this->expectExceptionMessage('You do not have a subscription associated, please contact the support team');
         $this->user->subscription()->disassociate()->save();
 
         $data = new StoreNoteData(title: 'Note title',content: 'Note content');
 
-        try {
-            (new StoreNoteAction())->handle($data, $this->user);
-        } catch (NoteExceptions $e) {
-            $this->assertEquals(
-                'You do not have a subscription associated, please contact the support team',
-                $e->getMessage()
-            );
-        }
+       (new StoreNoteAction())->handle($data, $this->user);
     }
 
     public function test_cannot_store_if_reaches_the_notes_limit_amount()
     {
-//        $this->expectException(NoteExceptions::class);
+        $this->expectException(NoteExceptions::class);
+        $this->expectExceptionMessage('You cannot create more notes, you have reached the limit (100)');
+
         $this->subscription->update(['rules' => ['notes_maximum_amount' => 100]]);
-        Note::factory(100)->create(['user_id' => $this->user->getKey()]);
+        Note::factory(100)->user($this->user)->create();
 
         $data = new StoreNoteData(title: 'Note title',content: 'Note content');
 
-        try {
-            (new StoreNoteAction())->handle($data, $this->user);
-        } catch (NoteExceptions $e) {
-            $this->assertEquals(
-                'You cannot create more notes, you have reached the limit (100)',
-                $e->getMessage()
-            );
-        }
+        (new StoreNoteAction())->handle($data, $this->user);
     }
 }
