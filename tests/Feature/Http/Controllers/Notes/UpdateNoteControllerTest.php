@@ -35,8 +35,8 @@ class UpdateNoteControllerTest extends TestCase
     public function test_validate_update()
     {
         $this->put("$this->url/{$this->note->getKey()}", [
-            'title' => '',
-            'content' => ''
+            'title' => 'title',
+            'content' => 'content'
         ])->assertStatus(302)
         ->assertSessionHasErrors(['title', 'content']);
     }
@@ -44,14 +44,14 @@ class UpdateNoteControllerTest extends TestCase
     public function test_update()
     {
         $this->put("$this->url/{$this->note->getKey()}", [
-            'title' => 'New title',
-            'content' => 'New content'
+            'title' => 'New title for the note',
+            'content' => 'New content for the note'
         ])->assertStatus(302);
 
         $this->assertDatabaseHas('notes', [
             'id' => $this->note->getKey(),
-            'title' => 'New title',
-            'content' => 'New content',
+            'title' => 'New title for the note',
+            'content' => 'New content for the note',
             'user_id' => $this->user->getKey()
         ]);
     }

@@ -3,6 +3,7 @@
 namespace App\Actions\Notes;
 
 use App\Dtos\Notes\StoreNoteData;
+use App\Dtos\Subscriptions\SubscriptionRulesData;
 use App\Exceptions\NoteExceptions;
 use App\Models\Note;
 use App\Models\User;
@@ -14,14 +15,16 @@ class StoreNoteAction
      */
     public function handle(StoreNoteData $data, User $user): Note
     {
-        $notesAmount = $user->notes()->count();
         $userSubscription = $user->subscription;
 
         if ($userSubscription === null){
             throw NoteExceptions::userDoesNotHaveSubscription();
         }
 
-        if ($notesAmount >= $userSubscription->rules['notes_maximum_amount']){
+        $notesAmount = $user->notes()->count();
+        $subscriptionRulesData = SubscriptionRulesData::fromArray($userSubscription->rules);
+
+        if ($notesAmount >= $subscriptionRulesData->notesMaximumAmount){
             throw NoteExceptions::notesAmountLimit($notesAmount);
         }
 

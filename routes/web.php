@@ -28,6 +28,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::resource('notes', App\Http\Controllers\NoteController::class)
+Route::resource('notes', App\Http\Controllers\NotesController::class)
     ->middleware(['auth:sanctum', 'note.logged.user']);
-    

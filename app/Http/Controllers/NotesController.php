@@ -7,15 +7,16 @@ use App\Actions\Notes\UpdateNoteAction;
 use App\Dtos\Notes\StoreNoteData;
 use App\Dtos\Notes\UpdateNoteData;
 use App\Exceptions\NoteExceptions;
+use App\Http\Requests\UpdateNoteRequest;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use App\Http\Requests\NoteRequest;
+use App\Http\Requests\StoreNoteRequest;
 use Inertia\Response;
 
-class NoteController extends Controller
+class NotesController extends Controller
 {
     public function index(Request $request): Response
     {
@@ -40,7 +41,7 @@ class NoteController extends Controller
         return Inertia::render('Notes/Create');
     }
 
-    public function store(NoteRequest $request): RedirectResponse
+    public function store(StoreNoteRequest $request): RedirectResponse
     {
         /** @var User $authUser */
         $authUser = $request->user();
@@ -67,7 +68,7 @@ class NoteController extends Controller
         return Inertia::render('Notes/Edit', compact('note'));
     }
 
-    public function update(NoteRequest $request, Note $note): RedirectResponse
+    public function update(UpdateNoteRequest $request, Note $note): RedirectResponse
     {
         $data = UpdateNoteData::fromRequest($request);
 
