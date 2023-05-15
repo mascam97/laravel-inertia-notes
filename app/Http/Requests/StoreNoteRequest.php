@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class StoreNoteRequest extends FormRequest
 {
@@ -23,14 +25,24 @@ class StoreNoteRequest extends FormRequest
      */
     public function rules()
     {
+        /** @var int $authUserId */
+        $authUserId = Auth::id();
+
         return [
             'title' => [
+                'bail',
                 'required',
-                'string'
+                'string',
+                'max:40',
+                'min:6',
+                Rule::unique('notes')
+                    ->where('user_id', $authUserId)
             ],
             'content' => [
+                'bail',
                 'required',
-                'string'
+                'string',
+                'min:20'
             ],
         ];
     }

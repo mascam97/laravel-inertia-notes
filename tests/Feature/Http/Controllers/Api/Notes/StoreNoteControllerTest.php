@@ -1,8 +1,7 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Notes;
+namespace Tests\Feature\Http\Controllers\Api\Notes;
 
-use App\Models\Note;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,7 +12,7 @@ class StoreNoteControllerTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    private string $url = "/notes";
+    private string $url = "api/notes";
 
     private User $user;
 
@@ -31,25 +30,17 @@ class StoreNoteControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    public function test_validate_store()
-    {
-        $this->post($this->url, [
-            'title' => '',
-            'content' => ''
-        ])->assertStatus(302)
-            ->assertSessionHasErrors(['title', 'content']);
-    }
-
     public function test_store()
     {
-        $this->post($this->url, [
-            'title' => 'Title for the content',
-            'content' => 'Content for the content'
-        ])->assertStatus(302);
+        $this->postJson($this->url, [
+            'title' => 'Title for the note',
+            'content' => 'Content for the note'
+        ])->assertStatus(200)
+            ->assertJsonPath('message', 'Note created!!');
 
         $this->assertDatabaseHas('notes', [
-            'title' => 'Title for the content',
-            'content' => 'Content for the content',
+            'title' => 'Title for the note',
+            'content' => 'Content for the note',
             'user_id' => $this->user->getKey(),
         ]);
     }
@@ -58,14 +49,15 @@ class StoreNoteControllerTest extends TestCase
     {
         $this->user->subscription()->disassociate()->save();
 
-        $this->post($this->url, [
-            'title' => 'title',
-            'content' => 'content'
-        ])->assertStatus(302);
+        $this->postJson($this->url, [
+            'title' => 'Title for the note',
+            'content' => 'Content for the note'
+        ])->assertStatus(400)
+            ->assertJsonPath('message', 'You do not have a subscription associated, please contact the support team');
 
         $this->assertDatabaseMissing('notes', [
-            'title' => 'title',
-            'content' => 'content',
+            'title' => 'Title for the note',
+            'content' => 'Content for the note',
             'user_id' => $this->user->getKey(),
         ]);
     }

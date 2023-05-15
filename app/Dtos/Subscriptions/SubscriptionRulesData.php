@@ -2,8 +2,6 @@
 
 namespace App\Dtos\Subscriptions;
 
-use Illuminate\Foundation\Http\FormRequest;
-
 class SubscriptionRulesData
 {
     public function __construct(

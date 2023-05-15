@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Note;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UpdateNoteRequest extends FormRequest
 {
@@ -23,14 +26,24 @@ class UpdateNoteRequest extends FormRequest
      */
     public function rules()
     {
+        /** @var int $authUserId */
+        $authUserId = Auth::id();
+        /** @var Note $note */
+        $note = $this->route('note');
+
         return [
             'title' => [
+                'bail',
                 'nullable',
                 'string',
                 'max:40',
-                'min:6'
+                'min:6',
+                Rule::unique('notes')
+                    ->where('user_id', $authUserId)
+                    ->ignoreModel($note)
             ],
             'content' => [
+                'bail',
                 'nullable',
                 'string',
                 'min:20'
