@@ -21,7 +21,7 @@ class NoteTest extends TestCase
     public function test_get_excerpt()
     {
         $note = new Note();
-        $note->content = "Sunt quaerat eveniet hic voluptatem quod quibusdam voluptas. Cum iusto assumenda mollitia ea ut consequuntur. Labore ipsam volupt.";
+        $note->content = 'Sunt quaerat eveniet hic voluptatem quod quibusdam voluptas. Cum iusto assumenda mollitia ea ut consequuntur. Labore ipsam volupt.';
 
         $this->assertEquals('Sunt quaerat eveniet hic voluptatem quod quibusdam voluptas. Cum iusto assu...', $note->excerpt);
     }

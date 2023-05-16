@@ -10,9 +10,10 @@ use Tests\TestCase;
 
 class DestroyNoteControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
-    private string $url = "api/notes";
+    private string $url = 'api/notes';
 
     private User $user;
 
@@ -41,6 +42,6 @@ class DestroyNoteControllerTest extends TestCase
             'id' => $this->note->getKey(),
             'user_id' => $this->user->getKey(),
             'title' => 'post to delete'
-            ]);
+        ]);
     }
 }

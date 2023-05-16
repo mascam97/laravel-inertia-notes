@@ -11,7 +11,7 @@ class NotesControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private string $url = "api/notes";
+    private string $url = 'api/notes';
 
     private User $user;
 

@@ -5,14 +5,13 @@ namespace Tests\Feature\Http\Middleware;
 use App\Models\User;
 use App\Models\Note;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class NoteBelongsToLoggedUserTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $url = "/notes";
+    private $url = '/notes';
 
     public function test_updated_not_allowed_by_not_owner()
     {

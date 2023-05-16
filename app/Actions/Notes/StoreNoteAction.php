@@ -17,18 +17,18 @@ class StoreNoteAction
     {
         $userSubscription = $user->subscription;
 
-        if ($userSubscription === null){
+        if ($userSubscription === null) {
             throw NoteExceptions::userDoesNotHaveSubscription();
         }
 
         $notesAmount = $user->notes()->count();
         $subscriptionRulesData = SubscriptionRulesData::fromArray($userSubscription->rules);
 
-        if ($notesAmount >= $subscriptionRulesData->notesMaximumAmount){
+        if ($notesAmount >= $subscriptionRulesData->notesMaximumAmount) {
             throw NoteExceptions::notesAmountLimit($notesAmount);
         }
 
-        $note = New Note();
+        $note = new Note();
         $note->title = $data->title;
         $note->content = $data->content;
         $note->user()->associate($user);

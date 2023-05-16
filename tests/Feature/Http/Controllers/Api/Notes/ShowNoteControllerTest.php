@@ -11,9 +11,10 @@ use Tests\TestCase;
 
 class ShowNoteControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
-    private string $url = "api/notes";
+    private string $url = 'api/notes';
 
     private User $user;
 

@@ -5,7 +5,7 @@ namespace App\QueryBuilders;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
-class NoteQueryBuilder  extends Builder
+class NoteQueryBuilder extends Builder
 {
     public function whereUser(User $user): self
     {
@@ -14,7 +14,7 @@ class NoteQueryBuilder  extends Builder
 
     public function whereContains(?string $keyword): self
     {
-        if ($keyword === null){
+        if ($keyword === null) {
             return $this;
         }
 

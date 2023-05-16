@@ -1,0 +1,21 @@
+{
+    "preset": "psr12",
+    "rules": {
+        "array_indentation" : true,
+        "array_syntax" : {"syntax" : "short"},
+        "blank_line_after_namespace" : true,
+        "elseif" : true,
+        "indentation_type" : true,
+        "line_ending" : true,
+        "lowercase_cast" : true,
+        "lowercase_keywords" : true,
+        "no_blank_lines_after_class_opening" : true,
+        "no_blank_lines_after_phpdoc" : true,
+        "no_closing_tag" : true,
+        "no_empty_phpdoc" : true,
+        "no_empty_statement" : true,
+        "no_spaces_inside_parenthesis" : true,
+        "single_quote" : true,
+        "ternary_operator_spaces" : true
+    }
+}

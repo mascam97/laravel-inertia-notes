@@ -31,7 +31,7 @@ class StoreNoteActionTest extends TestCase
 
     public function test_can_store_a_note()
     {
-        $data = new StoreNoteData(title: 'Note title',content: 'Note content');
+        $data = new StoreNoteData(title: 'Note title', content: 'Note content');
 
         $note = (new StoreNoteAction())->handle($data, $this->user);
 
@@ -46,9 +46,9 @@ class StoreNoteActionTest extends TestCase
         $this->expectExceptionMessage('You do not have a subscription associated, please contact the support team');
         $this->user->subscription()->disassociate()->save();
 
-        $data = new StoreNoteData(title: 'Note title',content: 'Note content');
+        $data = new StoreNoteData(title: 'Note title', content: 'Note content');
 
-       (new StoreNoteAction())->handle($data, $this->user);
+        (new StoreNoteAction())->handle($data, $this->user);
     }
 
     public function test_cannot_store_if_reaches_the_notes_limit_amount()
@@ -59,7 +59,7 @@ class StoreNoteActionTest extends TestCase
         $this->subscription->update(['rules' => ['notes_maximum_amount' => 100]]);
         Note::factory(100)->user($this->user)->create();
 
-        $data = new StoreNoteData(title: 'Note title',content: 'Note content');
+        $data = new StoreNoteData(title: 'Note title', content: 'Note content');
 
         (new StoreNoteAction())->handle($data, $this->user);
     }

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Http\Controllers\Notes;
 
-use App\Models\Note;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -11,9 +10,10 @@ use Tests\TestCase;
 
 class StoreNoteControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
-    private string $url = "/notes";
+    private string $url = '/notes';
 
     private User $user;
 

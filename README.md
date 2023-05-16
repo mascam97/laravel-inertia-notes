@@ -115,6 +115,14 @@ And now you have all the environment in the port 80 (e.g. http://127.0.0.1:80/).
 
 ---
 
+### Code style
+
+There are rules in `pint.json` about PHP-CS-Fixer to fix code style. You can run these rules with:
+
+```
+sail vendor/bin/pint
+```
+
 ### Backend testing
 
 There are some unit testing in Models and some feature testings in controllers, all these test guarantee functionalities from Jetstream, authorization and actions as create, read, update and delete notes. 
@@ -148,6 +156,7 @@ APP_DEBUG=false
 
 -   [Laravel 8](https://laravel.com/docs/8.x/releases/) - PHP framework.
 -   [Laravel Jetstream](https://jetstream.laravel.com/2.x/introduction.html) - Started kit.
+-   [Laravel Pint](https://laravel.com/docs/10.x/pint) - PHP code style fixer for minimalists.
 -   [Vue 2](https://vuejs.org/) - JavaScript framework.
 -   [Tailwindcss](https://tailwindcss.com/) - CSS framework.
 

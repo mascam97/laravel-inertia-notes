@@ -10,9 +10,10 @@ use Tests\TestCase;
 
 class IndexNotesControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
-    private string $url = "/notes";
+    private string $url = '/notes';
 
     private User $user;
 

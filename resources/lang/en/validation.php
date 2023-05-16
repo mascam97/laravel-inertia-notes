@@ -132,7 +132,7 @@ return [
 
     'custom' => [
         'notes' => [
-          'limit' => 'You cannot create more notes, you have reached the limit (:amount)'
+            'limit' => 'You cannot create more notes, you have reached the limit (:amount)'
         ],
         'subscription' => [
             'required' => 'You do not have a subscription associated, please contact the support team'

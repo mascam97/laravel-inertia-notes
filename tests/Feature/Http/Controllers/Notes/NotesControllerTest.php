@@ -10,9 +10,10 @@ use Tests\TestCase;
 
 class NotesControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
-    private $url = "/notes";
+    private $url = '/notes';
 
     public function test_guest()
     {
@@ -61,6 +62,6 @@ class NotesControllerTest extends TestCase
         $this->assertDatabaseMissing('notes', [
             'user_id' => $note->user_id,
             'title' => 'post to delete'
-            ]);
+        ]);
     }
 }
