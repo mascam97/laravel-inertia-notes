@@ -21,6 +21,7 @@ Due to I have another project with Jetstream [Laravel Livewire Publications](htt
 
 - Refactored some code with best practices
 - Implemented some design patters: QueryBuilder, Data Transfer Object and Actions 
+- Implemented a simple API for managing notes 
 
 ---
 
