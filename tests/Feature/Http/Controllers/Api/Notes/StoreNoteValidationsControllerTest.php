@@ -6,13 +6,11 @@ use App\Models\Note;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class StoreNoteValidationsControllerTest extends TestCase
 {
     use RefreshDatabase;
-    use WithFaker;
 
     private string $url = 'api/notes';
 

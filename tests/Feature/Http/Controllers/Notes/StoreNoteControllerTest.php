@@ -5,13 +5,11 @@ namespace Tests\Feature\Http\Controllers\Notes;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class StoreNoteControllerTest extends TestCase
 {
     use RefreshDatabase;
-    use WithFaker;
 
     private string $url = '/notes';
 
@@ -29,15 +27,6 @@ class StoreNoteControllerTest extends TestCase
         $this->user->subscription()->associate($this->subscription)->save();
 
         $this->actingAs($this->user);
-    }
-
-    public function test_validate_store()
-    {
-        $this->post($this->url, [
-            'title' => '',
-            'content' => ''
-        ])->assertStatus(302)
-            ->assertSessionHasErrors(['title', 'content']);
     }
 
     public function test_store()

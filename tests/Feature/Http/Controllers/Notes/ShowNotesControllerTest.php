@@ -1,17 +1,17 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Api\Notes;
+namespace Tests\Feature\Http\Controllers\Notes;
 
 use App\Models\User;
 use App\Models\Note;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class DestroyNoteControllerTest extends TestCase
+class ShowNotesControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private string $url = 'api/notes';
+    private string $url = '/notes';
 
     private User $user;
 
@@ -30,16 +30,16 @@ class DestroyNoteControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    public function test_destroy()
+    public function test_show_and_edit()
     {
-        $this->deleteJson("$this->url/{$this->note->id}")
+        $this->get("$this->url/{$this->note->id}")
             ->assertStatus(200)
-            ->assertJsonPath('message', 'Note deleted!!');
+            ->assertSee($this->note->title)
+            ->assertSee($this->note->content);
 
-        $this->assertDatabaseMissing('notes', [
-            'id' => $this->note->getKey(),
-            'user_id' => $this->user->getKey(),
-            'title' => 'post to delete'
-        ]);
+        $this->get("$this->url/{$this->note->id}/edit")
+            ->assertStatus(200)
+            ->assertSee($this->note->title)
+            ->assertSee($this->note->content);
     }
 }

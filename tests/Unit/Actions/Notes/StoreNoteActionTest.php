@@ -5,6 +5,7 @@ namespace Tests\Unit\Actions\Notes;
 use App\Actions\Notes\StoreNoteAction;
 use App\Dtos\Notes\StoreNoteData;
 use App\Exceptions\NoteExceptions;
+use App\Exceptions\SubscriptionExceptions;
 use App\Models\Note;
 use App\Models\Subscription;
 use App\Models\User;
@@ -42,7 +43,7 @@ class StoreNoteActionTest extends TestCase
 
     public function test_cannot_store_if_user_does_not_have_subscription()
     {
-        $this->expectException(NoteExceptions::class);
+        $this->expectException(SubscriptionExceptions::class);
         $this->expectExceptionMessage('You do not have a subscription associated, please contact the support team');
         $this->user->subscription()->disassociate()->save();
 

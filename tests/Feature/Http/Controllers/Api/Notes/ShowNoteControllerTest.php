@@ -5,14 +5,12 @@ namespace Tests\Feature\Http\Controllers\Api\Notes;
 use App\Models\User;
 use App\Models\Note;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class ShowNoteControllerTest extends TestCase
 {
     use RefreshDatabase;
-    use WithFaker;
 
     private string $url = 'api/notes';
 

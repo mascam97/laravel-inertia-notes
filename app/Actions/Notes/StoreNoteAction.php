@@ -5,6 +5,7 @@ namespace App\Actions\Notes;
 use App\Dtos\Notes\StoreNoteData;
 use App\Dtos\Subscriptions\SubscriptionRulesData;
 use App\Exceptions\NoteExceptions;
+use App\Exceptions\SubscriptionExceptions;
 use App\Models\Note;
 use App\Models\User;
 
@@ -12,13 +13,14 @@ class StoreNoteAction
 {
     /**
      * @throws NoteExceptions
+     * @throws SubscriptionExceptions
      */
     public function handle(StoreNoteData $data, User $user): Note
     {
         $userSubscription = $user->subscription;
 
         if ($userSubscription === null) {
-            throw NoteExceptions::userDoesNotHaveSubscription();
+            throw SubscriptionExceptions::userDoesNotHaveSubscription();
         }
 
         $notesAmount = $user->notes()->count();

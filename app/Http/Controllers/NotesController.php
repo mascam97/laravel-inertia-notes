@@ -7,6 +7,7 @@ use App\Actions\Notes\UpdateNoteAction;
 use App\Dtos\Notes\StoreNoteData;
 use App\Dtos\Notes\UpdateNoteData;
 use App\Exceptions\NoteExceptions;
+use App\Exceptions\SubscriptionExceptions;
 use App\Http\Requests\UpdateNoteRequest;
 use App\Models\Note;
 use App\Models\User;
@@ -49,7 +50,7 @@ class NotesController extends Controller
 
         try {
             (new StoreNoteAction())->handle($data, $authUser);
-        } catch (NoteExceptions $e) {
+        } catch (NoteExceptions|SubscriptionExceptions $e) {
             return redirect()
                 ->route('notes.index')
                 ->with('warning', $e->getMessage());

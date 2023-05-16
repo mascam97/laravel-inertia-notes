@@ -5,15 +5,13 @@ namespace Tests\Feature\Http\Controllers\Notes;
 use App\Models\User;
 use App\Models\Note;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class NotesControllerTest extends TestCase
 {
     use RefreshDatabase;
-    use WithFaker;
 
-    private $url = '/notes';
+    private string $url = '/notes';
 
     public function test_guest()
     {
@@ -47,21 +45,5 @@ class NotesControllerTest extends TestCase
         $response_edit->assertStatus(200);
         $response_edit->assertSee($data['title']);
         $response_edit->assertSee($data['content']);
-    }
-
-    public function test_destroy()
-    {
-        $user = User::factory()->create();
-        $note = Note::factory()->user($user)->create([
-            'title' => 'post to delete'
-        ]);
-
-        $response = $this->actingAs($user)->delete("$this->url/{$note->id}");
-
-        $response->assertStatus(302);
-        $this->assertDatabaseMissing('notes', [
-            'user_id' => $note->user_id,
-            'title' => 'post to delete'
-        ]);
     }
 }

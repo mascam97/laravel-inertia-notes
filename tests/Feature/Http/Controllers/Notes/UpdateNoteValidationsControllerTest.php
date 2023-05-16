@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class UpdateNoteControllerTest extends TestCase
+class UpdateNoteValidationsControllerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -31,18 +31,12 @@ class UpdateNoteControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    public function test_update()
+    public function test_validate_update()
     {
         $this->put("$this->url/{$this->note->getKey()}", [
-            'title' => 'New title for the note',
-            'content' => 'New content for the note'
-        ])->assertStatus(302);
-
-        $this->assertDatabaseHas('notes', [
-            'id' => $this->note->getKey(),
-            'title' => 'New title for the note',
-            'content' => 'New content for the note',
-            'user_id' => $this->user->getKey()
-        ]);
+            'title' => 'title',
+            'content' => 'content'
+        ])->assertStatus(302)
+        ->assertSessionHasErrors(['title', 'content']);
     }
 }

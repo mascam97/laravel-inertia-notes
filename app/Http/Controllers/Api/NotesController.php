@@ -7,6 +7,7 @@ use App\Actions\Notes\UpdateNoteAction;
 use App\Dtos\Notes\StoreNoteData;
 use App\Dtos\Notes\UpdateNoteData;
 use App\Exceptions\NoteExceptions;
+use App\Exceptions\SubscriptionExceptions;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NoteResource;
 use App\Http\Requests\UpdateNoteRequest;
@@ -44,7 +45,7 @@ class NotesController extends Controller
 
         try {
             $note = (new StoreNoteAction())->handle($data, $authUser);
-        } catch (NoteExceptions $e) {
+        } catch (NoteExceptions|SubscriptionExceptions $e) {
             return response()->json(['message' => $e->getMessage()], 400);
         }
 

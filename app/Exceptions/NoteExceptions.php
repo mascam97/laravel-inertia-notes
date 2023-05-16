@@ -10,9 +10,4 @@ class NoteExceptions extends Exception
     {
         return new static(__('validation.custom.notes.limit', ['amount' => $limitNotes]));
     }
-
-    public static function userDoesNotHaveSubscription(): self
-    {
-        return new static(__('validation.custom.subscription.required'));
-    }
 }

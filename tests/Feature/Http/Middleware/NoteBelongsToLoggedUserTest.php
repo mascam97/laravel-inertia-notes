@@ -11,7 +11,7 @@ class NoteBelongsToLoggedUserTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $url = '/notes';
+    private string $url = '/notes';
 
     public function test_updated_not_allowed_by_not_owner()
     {
