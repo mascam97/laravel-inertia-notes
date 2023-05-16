@@ -22,6 +22,7 @@ Due to I have another project with Jetstream [Laravel Livewire Publications](htt
 - Refactored some code with best practices
 - Implemented some design patters: QueryBuilder, Data Transfer Object and Actions 
 - Implemented a simple API for managing notes 
+- Ordered the project according to some theory about **Domain Driven Design**
 
 ---
 
@@ -124,6 +125,14 @@ There are rules in `pint.json` about PHP-CS-Fixer to fix code style. You can run
 sail vendor/bin/pint
 ```
 
+### Static Analysis
+
+In order to find errors in the code without running it. It is better before running the tests.
+
+```
+sail composer phpstan
+```
+
 ### Backend testing
 
 There are some unit testing in Models and some feature testings in controllers, all these test guarantee functionalities from Jetstream, authorization and actions as create, read, update and delete notes. 
@@ -158,6 +167,7 @@ APP_DEBUG=false
 -   [Laravel 8](https://laravel.com/docs/8.x/releases/) - PHP framework.
 -   [Laravel Jetstream](https://jetstream.laravel.com/2.x/introduction.html) - Started kit.
 -   [Laravel Pint](https://laravel.com/docs/10.x/pint) - PHP code style fixer for minimalists.
+-   [Larastan](https://github.com/nunomaduro/larastan) - PHP tool to find errors in your code.
 -   [Vue 2](https://vuejs.org/) - JavaScript framework.
 -   [Tailwindcss](https://tailwindcss.com/) - CSS framework.
 
