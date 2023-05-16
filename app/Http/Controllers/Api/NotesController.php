@@ -10,12 +10,12 @@ use App\Domain\Notes\Exceptions\NoteExceptions;
 use App\Domain\Subscriptions\Exceptions\SubscriptionExceptions;
 use App\Domain\Notes\Models\Note;
 use App\Domain\Users\Models\User;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\StoreNoteRequest;
 use App\Http\Requests\Api\UpdateNoteRequest;
 use App\Http\Resources\Api\NoteResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Inertia\Controller;
 
 class NotesController extends Controller
 {
