@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Resources\Api;
 
 use App\Domain\Notes\Models\Note;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -15,7 +15,6 @@ class NoteResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'excerpt' => $this->excerpt,
             'content' => $this->content,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -40,7 +40,6 @@ class ShowNoteControllerTest extends TestCase
                     $data->where('id', $this->note->id)
                     ->where('title', $this->note->title)
                     ->where('content', $this->note->content)
-                    ->where('excerpt', $this->note->excerpt)
                     ->has('created_at')
                     ->has('updated_at');
                 })->etc();

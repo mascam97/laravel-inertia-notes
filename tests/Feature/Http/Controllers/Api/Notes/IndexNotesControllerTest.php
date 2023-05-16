@@ -34,7 +34,6 @@ class IndexNotesControllerTest extends TestCase
                 '*' => [
                     'id',
                     'title',
-                    'excerpt',
                     'content',
                     'created_at',
                     'updated_at',

@@ -8,14 +8,14 @@ use App\Domain\Notes\Dtos\StoreNoteData;
 use App\Domain\Notes\Dtos\UpdateNoteData;
 use App\Domain\Notes\Exceptions\NoteExceptions;
 use App\Domain\Subscriptions\Exceptions\SubscriptionExceptions;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\NoteResource;
-use App\Http\Requests\UpdateNoteRequest;
 use App\Domain\Notes\Models\Note;
 use App\Domain\Users\Models\User;
+use App\Http\Requests\Api\StoreNoteRequest;
+use App\Http\Requests\Api\UpdateNoteRequest;
+use App\Http\Resources\Api\NoteResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreNoteRequest;
+use Inertia\Controller;
 
 class NotesController extends Controller
 {

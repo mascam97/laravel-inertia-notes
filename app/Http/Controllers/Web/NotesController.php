@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Domain\Notes\Actions\StoreNoteAction;
 use App\Domain\Notes\Actions\UpdateNoteAction;
@@ -8,13 +8,14 @@ use App\Domain\Notes\Dtos\StoreNoteData;
 use App\Domain\Notes\Dtos\UpdateNoteData;
 use App\Domain\Notes\Exceptions\NoteExceptions;
 use App\Domain\Subscriptions\Exceptions\SubscriptionExceptions;
-use App\Http\Requests\UpdateNoteRequest;
 use App\Domain\Notes\Models\Note;
 use App\Domain\Users\Models\User;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Web\StoreNoteRequest;
+use App\Http\Requests\Web\UpdateNoteRequest;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreNoteRequest;
 use Inertia\Response;
 
 class NotesController extends Controller
