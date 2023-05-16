@@ -8,6 +8,6 @@ class NoteExceptions extends Exception
 {
     public static function notesAmountLimit(int $limitNotes): self
     {
-        return new static(__('validation.custom.notes.limit', ['amount' => $limitNotes]));
+        return new self(__('validation.custom.notes.limit', ['amount' => $limitNotes]));
     }
 }

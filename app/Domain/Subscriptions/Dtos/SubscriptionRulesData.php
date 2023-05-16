@@ -11,7 +11,7 @@ class SubscriptionRulesData
 
     public static function fromArray(array $array): self
     {
-        return new static(
+        return new self(
             notesMaximumAmount: $array['notes_maximum_amount'],
         );
     }

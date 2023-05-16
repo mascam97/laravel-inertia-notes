@@ -14,7 +14,7 @@ class StoreNoteData
 
     public static function fromRequest(FormRequest $request): self
     {
-        return new static(
+        return new self(
             title: $request->input('title'),
             content: $request->input('content'),
         );
