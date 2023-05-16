@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dtos\Notes;
+namespace App\Domain\Notes\Dtos;
 
 use Illuminate\Foundation\Http\FormRequest;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dtos\Subscriptions;
+namespace App\Domain\Subscriptions\Dtos;
 
 class SubscriptionRulesData
 {

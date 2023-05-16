@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Actions\Notes;
 
-use App\Actions\Notes\UpdateNoteAction;
-use App\Dtos\Notes\UpdateNoteData;
-use App\Models\Note;
-use App\Models\User;
+use App\Domain\Notes\Actions\UpdateNoteAction;
+use App\Domain\Notes\Dtos\UpdateNoteData;
+use App\Domain\Notes\Models\Note;
+use App\Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

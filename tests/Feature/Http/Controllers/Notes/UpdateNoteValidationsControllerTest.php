@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers\Notes;
 
-use App\Models\Note;
-use App\Models\User;
+use App\Domain\Notes\Models\Note;
+use App\Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

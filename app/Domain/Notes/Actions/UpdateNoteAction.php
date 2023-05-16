@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Actions\Notes;
+namespace App\Domain\Notes\Actions;
 
-use App\Dtos\Notes\UpdateNoteData;
-use App\Models\Note;
+use App\Domain\Notes\Dtos\UpdateNoteData;
+use App\Domain\Notes\Models\Note;
 
 class UpdateNoteAction
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Actions\Notes;
+namespace App\Domain\Notes\Actions;
 
-use App\Dtos\Notes\StoreNoteData;
-use App\Dtos\Subscriptions\SubscriptionRulesData;
-use App\Exceptions\NoteExceptions;
-use App\Exceptions\SubscriptionExceptions;
-use App\Models\Note;
-use App\Models\User;
+use App\Domain\Notes\Dtos\StoreNoteData;
+use App\Domain\Subscriptions\Dtos\SubscriptionRulesData;
+use App\Domain\Notes\Exceptions\NoteExceptions;
+use App\Domain\Notes\Models\Note;
+use App\Domain\Subscriptions\Exceptions\SubscriptionExceptions;
+use App\Domain\Users\Models\User;
 
 class StoreNoteAction
 {

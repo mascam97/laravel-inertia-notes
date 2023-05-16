@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Actions\Notes;
 
-use App\Actions\Notes\StoreNoteAction;
-use App\Dtos\Notes\StoreNoteData;
-use App\Exceptions\NoteExceptions;
-use App\Exceptions\SubscriptionExceptions;
-use App\Models\Note;
-use App\Models\Subscription;
-use App\Models\User;
+use App\Domain\Notes\Actions\StoreNoteAction;
+use App\Domain\Notes\Dtos\StoreNoteData;
+use App\Domain\Notes\Exceptions\NoteExceptions;
+use App\Domain\Subscriptions\Exceptions\SubscriptionExceptions;
+use App\Domain\Notes\Models\Note;
+use App\Domain\Subscriptions\Models\Subscription;
+use App\Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

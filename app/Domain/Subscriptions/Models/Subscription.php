@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Subscriptions\Models;
 
+use App\Domain\Users\Models\User;
 use Database\Factories\SubscriptionFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -32,6 +34,11 @@ class Subscription extends Model
     protected $casts = [
         'rules' => 'array',
     ];
+
+    protected static function newFactory(): Factory
+    {
+        return SubscriptionFactory::new();
+    }
 
     public function users(): HasMany
     {

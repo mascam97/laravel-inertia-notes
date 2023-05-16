@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\Notes\StoreNoteAction;
-use App\Actions\Notes\UpdateNoteAction;
-use App\Dtos\Notes\StoreNoteData;
-use App\Dtos\Notes\UpdateNoteData;
-use App\Exceptions\NoteExceptions;
-use App\Exceptions\SubscriptionExceptions;
+use App\Domain\Notes\Actions\StoreNoteAction;
+use App\Domain\Notes\Actions\UpdateNoteAction;
+use App\Domain\Notes\Dtos\StoreNoteData;
+use App\Domain\Notes\Dtos\UpdateNoteData;
+use App\Domain\Notes\Exceptions\NoteExceptions;
+use App\Domain\Subscriptions\Exceptions\SubscriptionExceptions;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NoteResource;
 use App\Http\Requests\UpdateNoteRequest;
-use App\Models\Note;
-use App\Models\User;
+use App\Domain\Notes\Models\Note;
+use App\Domain\Users\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNoteRequest;

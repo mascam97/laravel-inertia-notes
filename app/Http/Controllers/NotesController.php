@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Notes\StoreNoteAction;
-use App\Actions\Notes\UpdateNoteAction;
-use App\Dtos\Notes\StoreNoteData;
-use App\Dtos\Notes\UpdateNoteData;
-use App\Exceptions\NoteExceptions;
-use App\Exceptions\SubscriptionExceptions;
+use App\Domain\Notes\Actions\StoreNoteAction;
+use App\Domain\Notes\Actions\UpdateNoteAction;
+use App\Domain\Notes\Dtos\StoreNoteData;
+use App\Domain\Notes\Dtos\UpdateNoteData;
+use App\Domain\Notes\Exceptions\NoteExceptions;
+use App\Domain\Subscriptions\Exceptions\SubscriptionExceptions;
 use App\Http\Requests\UpdateNoteRequest;
-use App\Models\Note;
-use App\Models\User;
+use App\Domain\Notes\Models\Note;
+use App\Domain\Users\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Illuminate\Http\Request;

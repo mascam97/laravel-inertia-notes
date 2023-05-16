@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Subscription;
-use App\Models\User;
-use App\Models\Note;
+use App\Domain\Subscriptions\Models\Subscription;
+use App\Domain\Users\Models\User;
+use App\Domain\Notes\Models\Note;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;

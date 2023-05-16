@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Users\Models;
 
+use App\Domain\Notes\Models\Note;
+use App\Domain\Subscriptions\Models\Subscription;
 use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -77,6 +80,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected static function newFactory(): Factory
+    {
+        return UserFactory::new();
+    }
 
     public function subscription(): BelongsTo
     {

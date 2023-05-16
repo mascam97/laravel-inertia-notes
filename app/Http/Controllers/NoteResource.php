@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Note;
+use App\Domain\Notes\Models\Note;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\QueryBuilders;
+namespace App\Domain\Notes\QueryBuilders;
 
-use App\Models\User;
+use App\Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
 class NoteQueryBuilder extends Builder

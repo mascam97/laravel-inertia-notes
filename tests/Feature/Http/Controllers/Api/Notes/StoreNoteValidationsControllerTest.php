@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers\Api\Notes;
 
-use App\Models\Note;
-use App\Models\Subscription;
-use App\Models\User;
+use App\Domain\Notes\Models\Note;
+use App\Domain\Subscriptions\Models\Subscription;
+use App\Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

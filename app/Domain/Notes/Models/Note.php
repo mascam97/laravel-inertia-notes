@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Notes\Models;
 
-use App\QueryBuilders\NoteQueryBuilder;
+use App\Domain\Users\Models\User;
+use App\Domain\Notes\QueryBuilders\NoteQueryBuilder;
 use Database\Factories\NoteFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -36,6 +38,11 @@ class Note extends Model
         'title',
         'content'
     ];
+
+    protected static function newFactory(): Factory
+    {
+        return NoteFactory::new();
+    }
 
     /**
      * @param Builder $query
