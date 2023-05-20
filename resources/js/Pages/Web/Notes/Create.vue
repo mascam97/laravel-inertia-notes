@@ -23,19 +23,19 @@
                                 <label class="block font-medium text-sm text-gray-700">
                                     Title
                                 </label>
-                                <textarea 
+                                <textarea
                                     class="form-input w-full rounded-md shadow-sm"
                                     v-model="form.title"
                                 ></textarea>
                                 <label class="block font-medium text-sm text-gray-700">
                                     Content
                                 </label>
-                                <textarea 
+                                <textarea
                                     class="form-input w-full rounded-md shadow-sm"
                                     v-model="form.content"
                                     rows="8"
                                 ></textarea>
-                                <button 
+                                <button
                                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
                                 >Create</button>
                             </form>
@@ -54,13 +54,11 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import Welcome from "@/Jetstream/Welcome";
+import AppLayout from '@/Layouts/WebAppLayout';
 
 export default {
     components: {
         AppLayout,
-        Welcome
     },
     data() {
         return {

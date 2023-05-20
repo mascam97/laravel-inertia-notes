@@ -35,13 +35,11 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import Welcome from "@/Jetstream/Welcome";
+import AppLayout from '@/Layouts/WebAppLayout';
 
 export default {
     components: {
         AppLayout,
-        Welcome
     },
     props: {
         note: Object

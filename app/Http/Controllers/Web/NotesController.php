@@ -33,14 +33,14 @@ class NotesController extends Controller
             ->get()
             ->append(['excerpt']);
 
-        return Inertia::render('Notes/Index', [
+        return Inertia::render('Web/Notes/Index', [
             'notes' => $notes->toArray()
         ]);
     }
 
     public function create(): Response
     {
-        return Inertia::render('Notes/Create');
+        return Inertia::render('Web/Notes/Create');
     }
 
     public function store(StoreNoteRequest $request): RedirectResponse
@@ -62,12 +62,12 @@ class NotesController extends Controller
 
     public function show(Note $note): Response
     {
-        return Inertia::render('Notes/Show', compact('note'));
+        return Inertia::render('Web/Notes/Show', compact('note'));
     }
 
     public function edit(Note $note): Response
     {
-        return Inertia::render('Notes/Edit', compact('note'));
+        return Inertia::render('Web/Notes/Edit', compact('note'));
     }
 
     public function update(UpdateNoteRequest $request, Note $note): RedirectResponse
